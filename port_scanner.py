@@ -18,12 +18,12 @@ def get_open_ports(target, port_range, verbose = False):
             return "Error:Invalid hostname"
     if not ip_address:
         return "Error:Invalid IP address"  
-        
+
     for port in range(port_range[0],port_range[1]+i):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.settimeout(1)
             result = s.connect_ex((ip_address,port))
-            is result == 0:
+            if result == 0:
                 open_ports.append(port)  
     if not verbose:
         return open_ports
